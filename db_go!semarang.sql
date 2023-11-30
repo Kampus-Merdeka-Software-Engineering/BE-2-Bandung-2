@@ -30,67 +30,98 @@ CREATE TABLE signup (
 );
 
 CREATE TABLE users (
-  id_user INT(12) NOT NULL,
-  username VARCHAR(255) NOT NULL,
+  id_user INT NOT NULL,
   email VARCHAR(50) NOT NULL,
-  password_user VARCHAR(20) NOT NULL,
+  username VARCHAR(50) NOT NULL,
+  fullname VARCHAR(50) NOT NULL,
+  password_user VARCHAR(10) NOT NULL,
   no_handphone VARCHAR(15) NOT NULL,
   PRIMARY KEY (id_user)
+);
+
+CREATE TABLE contact_us (
+    id_contact INT NOT NULL AUTO_INCREMENT,
+    email VARCHAR(50) NOT NULL,
+    fullname VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    PRIMARY KEY (id_contact)
 );
 
 ALTER TABLE destination
 MODIFY deskripsi_destinasi LONGTEXT;
 
-INSERT INTO destination (id_destinasi, nama_destinasi, alamat_destinasi, deskripsi_destinasi, jam_buka, jam_tutup)
-VALUES 
+ALTER TABLE destination
+MODIFY id_destinasi INT NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE destination AUTO_INCREMENT = 100;
+
+INSERT INTO destination VALUES 
 	(1,
     'Lawang Sewu',
-    'Jl. Pemuda No.160, Sekayu, Kec. Semarang Tengah, Kota Semarang',
-    'Lawang Sewu merupakan bangunan bersejarah yang dibangun pada awal abad ke-20 oleh Pemerintah Hindia Belanda sebagai kantor pusat perusahaan kereta api Nederlands-Indische Spoorweg Maatschappij (NIS). Meskipun namanya berarti "Seribu Pintu" dalam bahasa Jawa, jumlah pintu sebenarnya jauh lebih sedikit. Dengan arsitektur bergaya Belanda kolonial, Lawang Sewu memancarkan pesona masa lalu dengan pintu dan jendela yang besar serta kubah yang menawan. Selama sejarahnya, bangunan ini memiliki berbagai fungsi, termasuk sebagai kantor administrasi, stasiun kereta api, dan bahkan pernah digunakan oleh tentara Jepang selama Perang Dunia II. Meskipun memiliki sejarah yang kaya, Lawang Sewu juga terkenal karena mitos dan cerita horor, menarik minat pengunjung yang mencari pengalaman sejarah dan keunikan mistis. Kini berfungsi sebagai museum sejarah dan kebudayaan, Lawang Sewu menyambut pengunjung untuk menjelajahi ruang-ruangnya yang indah, menampilkan artefak dan informasi berharga seputar sejarahnya yang beragam.',
+    'Jl MT. Haryono, Bubakan',
+    'Lawang Sewu is an office building located opposite Tugu Muda, Semarang City, Central Java, Indonesia, which was built as the headquarters of the Nederlandsch-Indische Spoorweg Maatschappij.',
     '07:00',
-    '21:00'),
+    '21:00');
+INSERT INTO destination VALUES 
     (2,
     'Kuil Sam Poo Kong',
-    'Jl. Simongan No.129, Bongsari, Kec. Semarang Barat, Kota Semarang',
-    'Kuil Sam Poo Kong, juga dikenal sebagai Klenteng Gedung Batu. Kuil ini memiliki nilai sejarah yang kaya, karena dikaitkan dengan seorang penjelajah Tiongkok terkenal, Laksamana Zheng He atau Cheng Ho, yang datang ke Jawa pada abad ke-15. Kuil ini merupakan kompleks bangunan dengan arsitektur khas Tionghoa, yang melibatkan beberapa paviliun, kelenteng, dan aula utama yang menarik. Setiap struktur di dalam kompleks ini memiliki makna simbolis yang mendalam dalam tradisi Budha dan Konghucu. Pengunjung dapat menemukan patung-patung dewa, relief, dan artefak sejarah yang menceritakan kisah perjalanan Laksamana Zheng He. Kuil Sam Poo Kong bukan hanya tempat ibadah, tetapi juga menjadi tujuan wisata sejarah yang menarik bagi para pengunjung yang ingin menyelami kisah perjalanan maritim kuno dan keberagaman budaya di Indonesia.',
+    'Jl. Simongan No.129, Bongsari',
+    'Sam Poo Kong Temple is a historical temple that was built as a place of worship for the followers of the Confucian religion and is also a historical tourist destination. Sam Poo Kong Temple is located near Tugu Muda, which serves as an important landmark in the history of Semarang.',
     '08:00',
-    '20:00'),
+    '20:00');
+INSERT INTO destination VALUES
     (3,
     'Candi Gedong Songo',
-    'Jl. Sukorini, Krajan, Mlilir, Bandungan, Kabupaten Semarang',
-    'Candi Gedong Songo adalah kompleks candi Hindu yang terletak di lereng Gunung Ungaran, Semarang, Jawa Tengah, Indonesia. Dibangun pada abad ke-8 hingga ke-9 Masehi, candi ini merupakan salah satu situs arkeologi yang menakjubkan di Indonesia. Terdiri dari sembilan candi yang tersebar di sepanjang jalur setapak yang menawan, Candi Gedong Songo menawarkan pemandangan indah dan atmosfer spiritual. Dikelilingi oleh udara sejuk pegunungan dan pepohonan yang rindang, setiap candi memiliki arsitektur yang khas dengan patung-patung dan relief-relief yang menggambarkan warisan kepercayaan Hindu. Candi Gedong Songo tidak hanya menjadi tempat ibadah, tetapi juga destinasi wisata yang menarik bagi para pengunjung yang tertarik dengan sejarah, seni, dan keindahan alam.',
+    'Jl. Ke Candi Gedong Songo, Candi, Krajan',
+    'Gedong Songo Temple is a temple complex located in the highlands on the slopes of Mount Ungaran, Central Java, Indonesia, which was built as a place of Hindu worship. The temple complex consists of nine temples scattered around the mountainous area.',
     '06:30',
-    '18:00'),
+    '18:00');
+INSERT INTO destination VALUES
     (4,
     'Taman Bunga Celosia',
-    'Jln. Wisata Candi Gedong Songo Km 0.5, Desa Candi, Kec. Bandungan, Kab. Semarang',
-    'Taman Bunga Celosia adalah suatu area yang memukau di mana kelopak-kelopak berwarna cerah dari bunga celosia berkembang pesat, menciptakan pemandangan yang mempesona dan penuh warna. Bunga celosia, juga dikenal sebagai bunga kockscomb atau cockscomb, dikenal karena bentuk dan warna yang mencolok. Taman ini memamerkan keindahan beragam varietas celosia, yang termasuk dalam keluarga Amaranthaceae. Setiap kelopak bunga memancarkan keindahan uniknya, mulai dari merah, oranye, hingga kuning, menciptakan paduan warna yang memukau. Taman Bunga Celosia bukan hanya tempat yang memanjakan mata dengan kecantikan bunga-bunga yang mekar, tetapi juga memberikan suasana yang menyegarkan dan menggembirakan bagi pengunjung yang menyukai pesona alam yang indah.',
+    'Jl. Wisata Candi Gedong Songo Km 0,5, Bandungan',
+    'Celosia Flower Park is a flower garden filled with the beauty of celosia flowers that bloom all year round and offers a mesmerising experience for visitors looking for natural tranquillity in the middle of the city.',
     '08:00',
-    '17:00'),
+    '17:00');
+INSERT INTO destination VALUES
     (5,
     'Curug Lawe Benowo',
-    'Kalisidi, RT.01 / RW.06, Ungaran Barat, Hutan, Kec. Ungaran Barat, Semarang',
-    'Curug Lawe Benowo terletak di antara hutan dan tebing yang membutuhkan perjalanan ekstra untuk mencapainya, curug ini mempersembahkan pesona alam yang menawan. Air terjun yang indah dan segar ini memberikan hadiah yang memuaskan setelah melewati perjalanan yang menantang. Pemandangan sekitarnya yang hijau dan tenang menciptakan pengalaman yang menyegarkan bagi para pengunjung yang mencari ketenangan dan keindahan alam yang autentik. Curug Lawe Benowo menjadi destinasi yang menarik bagi para pecinta alam dan petualang yang mencari pengalaman yang berbeda di tengah keindahan alam Jawa Tengah.',
+    'Desa Kalisidi, Ungaran Barat',
+    'Curug Lawe Benowo is a waterfall known for its natural beauty. Surrounded by tropical forest, the waterfall offers an interesting journey through a winding path. The clarity of the water and the sound of its gurgling create a calming atmosphere.',
     '08:00',
-    '14:00'),
+    '14:00');
+INSERT INTO destination VALUES
     (6,
     'Dusun Semilir',
-    'Jl. Soekarno - Hatta No.49, Ngemple, Bawen, Ngemplak, Kabupaten Semarang',
-    'Dusun Semilir menyajikan keindahan alam pedesaan yang memikat, dengan hamparan kebun dan tanaman yang hijau. Pengunjung dapat menikmati suasana tenang dan segar sambil menjelajahi kebun bunga, berfoto di spot-spot menarik, dan merasakan kegiatan agrowisata seperti panen buah-buahan atau menjajal kegiatan pertanian. Selain itu, Dusun Semilir juga menawarkan fasilitas rekreasi keluarga, taman bermain anak-anak, dan beragam kuliner lokal yang lezat. Destinasi ini cocok untuk mereka yang mencari ketenangan, keindahan alam, serta ingin menikmati pesona kehidupan pedesaan di tengah kesibukan kota.',
+    'Jl. Soekarno Hatta No.49, Ngemple',
+    'Dusun Semilir is a village located near Tugu Muda, Semarang City, Central Java, Indonesia. It was originally the place where the Dutch East Indies Railway Compan (Nederlandsch-Indische Spoorweg Maatschappij) established an office building known as "Dusun Semilir" in the early 20th century.',
     '08:00',
-    '19:00'),
+    '19:00');
+INSERT INTO destination VALUES
     (7,
     'Kopeng Treetop Adventure',
-    'Jl. Raya Kopeng, Selo Ngisor, Batur, Kec. Getasan, Kabupaten Semarang',
-    'Kopeng Treetop Adventure di Semarang adalah destinasi petualangan yang menawarkan pengalaman seru di tengah keindahan alam. Terletak di kawasan Kopeng, destinasi ini menyediakan wahana flying fox dan treetop, memungkinkan pengunjung untuk menikmati keindahan hutan dari ketinggian. Pengunjung dapat merasakan sensasi meluncur di atas pepohonan dan menantang diri mereka sendiri melalui rintangan treetop yang menyenangkan. Selain aktivitas petualangan, Kopeng Treetop Adventure juga menawarkan pemandangan pegunungan yang spektakuler, membuatnya menjadi tempat yang populer bagi penggemar petualangan dan keluarga yang mencari pengalaman seru di alam terbuka Semarang.',
+    'Jl. Raya Kopeng, Getasan',
+    'Kopeng Treetop Adventure is an adventure park located in Kopeng, Central Java, Indonesia. The park is located in the middle of the forest and offers various adventure activities such as treetop walking, flying fox, and various other challenges at high altitude.',
     '08:30',
-    '17:00'),
+    '17:00');
+INSERT INTO destination VALUES
     (8,
     'Museum Ambarawa',
-    'Jl. Stasiun Nomor 1, Panjang Kidul, Panjang, Kecamatan Ambarawa, Kabupaten Semarang',
-    'Museum Ambarawa, yang terletak di kota Ambarawa, Jawa Tengah, merupakan sebuah institusi bersejarah yang menggabungkan keindahan arsitektur kolonial Belanda dengan kekayaan sejarah militer Indonesia. Dihousingkan dalam bangunan bersejarah yang dulunya kompleks stasiun kereta api dan markas tentara Belanda, museum ini menampilkan koleksi artefak dan peralatan militer, membeberkan peran penting Ambarawa selama masa kolonial dan Perang Dunia II. Pengunjung dapat mengeksplorasi dengan kereta api uap yang masih beroperasi, menambahkan sentuhan nostalgis pada pengalaman edukatif ini. Dengan merangkul warisan sejarah dan menawarkan perjalanan melalui masa lalu, Museum Ambarawa menjadi destinasi menarik bagi mereka yang tertarik dengan sejarah militer dan warisan kolonial di Indonesia.',
+    'Jl. Stasiun No.1, Ambarawa',
+    'Museum Ambarawa is a building that was originally used as a railway depot by the Nederlandsch-Indische Spoorwe Maatschappij. The building was later converted into a museum that displays a collection of trains, railway equipment, and the history of railways in Indonesia.',
     '08:00',
     '16:00');
     
+ALTER TABLE users
+ADD COLUMN id_destinasi INT,
+ADD FOREIGN KEY (id_destinasi) REFERENCES destination(id_destinasi);
+
 SELECT * FROM destination;
-    
+DESCRIBE users;
+DESCRIBE destination;
+DESCRIBE contact_us;
+SHOW TABLES;
+
+DROP TABLE login;
+DROP TABLE signup;
+
