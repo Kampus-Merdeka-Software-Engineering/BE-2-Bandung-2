@@ -1,18 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const contactUsController = require('../controller/contactUsController');
+const { createContactUs, getAllContactUs } = require('../services/contactUsService');
 
-// POST create feedback
-router.post('/contactus', async (req, res) => {
-  try {
-    const result = await contactUsController.createContactUs(req.body);
 
-    // Kirim respons berdasarkan hasil dari controller
-    res.json(result);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Internal Server Error');
-  }
+router.get('/', (req, res) => {
+    res.status(200).json({
+        status: true,
+        message: 'Welcome to GO SMG!',
+        data: null
+    });
 });
+
+router.post('/create', createContactUs);
+router.get('/get', getAllContactUs);
 
 module.exports = router;

@@ -1,19 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const destinationController = require('../controller/destinationController');
+const { createDestination, getAllDestination } = require('../services/destinationService');
 
-// GET all Videos
-router.get('/destination', async (req, res) => {
-  try {
-    const result = await destinationController.getAllDestination();
 
-    // Kirim respons berdasarkan hasil dari controller
-    res.json(result);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Internal Server Error');
-  }
+router.get('/', (req, res) => {
+    res.status(200).json({
+        status: true,
+        message: 'Welcome to GO SMG!',
+        data: null
+    });
 });
 
+router.post('/create', createDestination);
+router.get('/get', getAllDestination);
 
 module.exports = router;
+

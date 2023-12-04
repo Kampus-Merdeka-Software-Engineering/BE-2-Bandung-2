@@ -13,7 +13,7 @@ module.exports = {
             const hashPassword = await bcrypt.hash(password, 10);
 
             // check if user existed
-            let existUser = await prisma.create_user.findUnique({ where: { email } });
+            let existUser = await prisma.User.findFirst({ where: { email } });
             if(existUser) {
                 return res.status(400).json({
                     status: false,
@@ -22,7 +22,7 @@ module.exports = {
                 });
             }
 
-            let newUser = await prisma.create_user.create({
+            let newUser = await prisma.User.create({
                 data: {
                     username,
                     email,
@@ -42,29 +42,10 @@ module.exports = {
     },
 
     // Get All Users
-    getAllUsers: async (req, res, next) => {
+    getAllUser: async (req, res) => {
         try {
-            let { limit = 10, page = 1} = req.query;
-            limit = Number(limit);
-            page = Number(page);
-
-            let users = await prisma.create_user.findMany({
-                skip: (page - 1) * limit,
-                take: limit,
-            });
-
-            const { _count } = await prisma.create_user.aggregate({
-                _count: { id_user: true }
-            });
-
-            let pagination = getPagination(req, _count.id_user, page, limit);
-
-            res.status(200).json({
-                status: true,
-                message: "OK!",
-                data: { pagination, create_user }
-            });
-
+            const users = await prisma.User.findMany();
+            res.json(users);
         } catch (err) {
             next(err);
         }

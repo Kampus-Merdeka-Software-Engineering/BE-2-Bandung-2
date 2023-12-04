@@ -11,12 +11,10 @@ generator client {
 }
 
 model User {
- id          Int      @id @default(autoincrement())
- username    String
- email       String
- password    String
- destination Destination[]
- contacts    Contact[]
+ id                 Int      @id @default(autoincrement())
+ username           String
+ email              String
+ password           String
 }
 
 model Destination {
@@ -26,8 +24,6 @@ model Destination {
  desc_destination   String
  open_hours         DateTime
  close_hours        DateTime
- user               User[]
- contacts           Contact[]
 }
 
 model Contact {
@@ -35,8 +31,4 @@ model Contact {
  email              String
  fullname           String
  message            String
- userId             Int
- user               User     @relation(fields: [userId], references: [id])
- destinationId      Int
- destination        Destination @relation(fields: [destinationId], references: [id])
 }
