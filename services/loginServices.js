@@ -1,6 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
-// const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const { getPagination } = require('../helper/pagination');
 
 module.exports = {
@@ -19,8 +20,10 @@ module.exports = {
                     data: null,
                 });
             }
+            
+            const isPasswordValid = await bcrypt.compare(password, user.password);
 
-            if (password !== user.password) {
+            if (!isPasswordValid) {
                 return res.status(401).json({
                     status: false,
                     message: 'Email or password is incorrect.',
@@ -28,14 +31,18 @@ module.exports = {
                 });
             }
 
+            const token = jwt.sign({ userId: user.id, email: user.email }, 'your_secret_key', {
+                expiresIn: '1h', // You can adjust the token expiration time
+            });
+
             res.status(200).json({
                 status: true,
                 message: 'Login successful.',
-                data: { user },
+                data: { user, token },
             });
 
         } catch (err) {
-            console.error('Error adding to favorit: ', err);
+            console.error(err);
             res.status(500).send('Internal Server Error');
         }
     },

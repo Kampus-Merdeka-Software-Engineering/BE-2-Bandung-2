@@ -24,7 +24,7 @@ module.exports = {
           });
 
       } catch (err) {
-        console.error('Error adding to favorit: ', err);
+        console.error(err);
         res.status(500).send('Internal Server Error');
       }
   },
@@ -35,7 +35,7 @@ module.exports = {
         const destination = await prisma.Destination.findMany();
         res.json(destination);
     } catch (err) {
-        console.error('Error adding to favorit: ', err);
+        console.error(err);
         res.status(500).send('Internal Server Error');
     }
   }

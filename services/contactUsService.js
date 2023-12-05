@@ -22,7 +22,7 @@ module.exports = {
           });
 
       } catch (err) {
-        console.error('Error adding to favorit: ', err);
+        console.error(err);
         res.status(500).send('Internal Server Error');
       }
   },
@@ -33,7 +33,7 @@ module.exports = {
         const contactUs = await prisma.Contact.findMany();
         res.json(contactUs);
     } catch (err) {
-        console.error('Error adding to favorit: ', err);
+        console.error(err);
         res.status(500).send('Internal Server Error');
     }
   }

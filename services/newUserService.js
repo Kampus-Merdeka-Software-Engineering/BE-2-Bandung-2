@@ -1,16 +1,20 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const { getPagination } = require('../helper/pagination');
+
+const cryptPassword = async (password) => {
+    const salt = await bcrypt.genSalt(5)
+    return bcrypt.hash(password, salt)
+}
 
 module.exports = {
     // Create New User
     createUser: async (req, res, next) => {
         try {
-            let { username, email, password } = req.body;
 
-            // to hash password
-            const hashPassword = await bcrypt.hash(password, 10);
+            let { username, email, password } = req.body;
 
             // check if user existed
             let existUser = await prisma.User.findFirst({ where: { email } });
@@ -21,12 +25,14 @@ module.exports = {
                     data: null
                 });
             }
-
+            
+            const hashPassword = await cryptPassword(password);
+            
             let newUser = await prisma.User.create({
                 data: {
                     username,
                     email,
-                    password,
+                    password: hashPassword
                 },
             });
 
@@ -37,7 +43,7 @@ module.exports = {
             });
 
         } catch (err) {
-            console.error('Error adding to favorit: ', error);
+            console.error(err);
             res.status(500).send('Internal Server Error');
         }
     },
@@ -48,7 +54,7 @@ module.exports = {
             const users = await prisma.User.findMany();
             res.json(users);
         } catch (err) {
-            console.error('Error adding to favorit: ', err);
+            console.error(err);
             res.status(500).send('Internal Server Error');
         }
     }

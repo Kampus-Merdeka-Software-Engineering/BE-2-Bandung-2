@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { createUser, getAllUser } = require('../services/newUserService');
 const { loginUser } = require('../services/loginServices');
-const { createFavorite, getAllFavorite } = require('../services/favoriteService');
+const { createFavorite, getAllFavorite, delFavorite } = require('../services/favoriteService');
 
 
 router.get('/', (req, res) => {
@@ -18,6 +18,7 @@ router.get('/get', getAllUser);
 router.post('/login', loginUser);
 router.get('/favorite', getAllFavorite);
 router.post('/userFav', createFavorite);
+router.delete('/delFav', delFavorite);
 
 
 module.exports = router;
