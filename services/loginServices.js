@@ -35,7 +35,8 @@ module.exports = {
             });
 
         } catch (err) {
-            next(err);
+            console.error('Error adding to favorit: ', err);
+            res.status(500).send('Internal Server Error');
         }
     },
 };

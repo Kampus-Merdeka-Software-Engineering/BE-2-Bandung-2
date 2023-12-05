@@ -24,17 +24,19 @@ module.exports = {
           });
 
       } catch (err) {
-          next(err);
+        console.error('Error adding to favorit: ', err);
+        res.status(500).send('Internal Server Error');
       }
   },
 
   // Get All Destination
-  getAllDestination: async (req, res) => {
+  getAllDestination: async (req, res, next) => {
     try {
         const destination = await prisma.Destination.findMany();
         res.json(destination);
     } catch (err) {
-        next(err);
+        console.error('Error adding to favorit: ', err);
+        res.status(500).send('Internal Server Error');
     }
   }
 }

@@ -2,23 +2,23 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 module.exports = {
-  // Create Contact Us
-  createContactUs: async (req, res, next) => {
+  // Create Favorite
+  createFavorite: async (req, res, next) => {
       try {
-          let { email, fullname, message } = req.body;
+          let { is_favorite, userId, destinationId } = req.body;
 
-          let newContactUs = await prisma.Contact.create({
+          let newFavorite = await prisma.Favorite.create({
               data: {
-                email,
-                fullname,
-                message
+                is_favorite,
+                userId,
+                destinationId
               },
           });
 
           res.status(201).json({
               status: true,
-              message: "Contact US Created Successfully!",
-              data: newContactUs,
+              message: "New Favorite Created Successfully!",
+              data: newFavorite,
           });
 
       } catch (err) {
@@ -27,11 +27,11 @@ module.exports = {
       }
   },
 
-  // Get All Contact Us
-  getAllContactUs: async (req, res, next) => {
+  // Get All Favorite
+  getAllFavorite: async (req, res, next) => {
     try {
-        const contactUs = await prisma.Contact.findMany();
-        res.json(contactUs);
+        const favorite = await prisma.Favorite.findMany();
+        res.json(favorite);
     } catch (err) {
         console.error('Error adding to favorit: ', err);
         res.status(500).send('Internal Server Error');

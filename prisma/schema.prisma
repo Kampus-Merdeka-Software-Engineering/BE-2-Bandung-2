@@ -15,6 +15,7 @@ model User {
  username           String
  email              String
  password           String
+ favorit            Favorite[]
 }
 
 model Destination {
@@ -24,6 +25,7 @@ model Destination {
  desc_destination   String
  open_hours         DateTime
  close_hours        DateTime
+ favorit            Favorite[]
 }
 
 model Contact {
@@ -31,4 +33,13 @@ model Contact {
  email              String
  fullname           String
  message            String
+}
+
+model Favorite {
+ id                 Int      @id @default(autoincrement())
+ is_favorite        Boolean
+ userId             Int
+ destinationId      Int
+ user               User        @relation(fields: [userId], references: [id])
+ destinasi          Destination @relation(fields: [destinationId], references: [id])
 }
