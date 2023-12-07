@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 module.exports = {
   // Create Contact Us
   createContactUs: async (req, res, next) => {
-      try {
+      // try {
           let { email, fullname, message } = req.body;
 
           let newContactUs = await prisma.Contact.create({
@@ -21,10 +21,10 @@ module.exports = {
               data: newContactUs,
           });
 
-      } catch (err) {
-        console.error(err);
-        res.status(500).send('Internal Server Error');
-      }
+      // } catch (err) {
+      //   console.error(err);
+      //   res.status(500).send('Internal Server Error');
+      // }
   },
 
   // Get All Contact Us

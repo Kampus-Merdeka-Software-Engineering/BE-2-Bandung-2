@@ -5,15 +5,15 @@ module.exports = {
   // Create New Destination
   createDestination: async (req, res, next) => {
       try {
-          let { name_destination, loc_destination, desc_destination, open_hours, close_hours } = req.body;
+          let { title, location, description, time, image } = req.body;
 
           let newDestination = await prisma.Destination.create({
               data: {
-                name_destination,
-                loc_destination,
-                desc_destination,
-                open_hours,
-                close_hours
+                title,
+                location,
+                description,
+                time,
+                image
               },
           });
 

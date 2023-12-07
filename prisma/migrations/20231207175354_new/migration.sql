@@ -11,11 +11,11 @@ CREATE TABLE `User` (
 -- CreateTable
 CREATE TABLE `Destination` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `name_destination` VARCHAR(191) NOT NULL,
-    `loc_destination` VARCHAR(191) NOT NULL,
-    `desc_destination` VARCHAR(191) NOT NULL,
-    `open_hours` VARCHAR(191) NOT NULL,
-    `close_hours` VARCHAR(191) NOT NULL,
+    `title` VARCHAR(191) NOT NULL,
+    `location` VARCHAR(191) NOT NULL,
+    `description` VARCHAR(191) NOT NULL,
+    `time` VARCHAR(191) NOT NULL,
+    `image` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

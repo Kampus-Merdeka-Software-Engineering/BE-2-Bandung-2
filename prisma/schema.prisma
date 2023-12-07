@@ -20,11 +20,11 @@ model User {
 
 model Destination {
  id                 Int      @id @default(autoincrement())
- name_destination   String
- loc_destination    String
- desc_destination   String
- open_hours         String
- close_hours        String
+ title              String
+ location           String
+ description        String
+ time               String
+ image              String
  favorit            Favorite[]
 }
 
