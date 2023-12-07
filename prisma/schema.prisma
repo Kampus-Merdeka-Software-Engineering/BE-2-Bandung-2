@@ -23,8 +23,8 @@ model Destination {
  name_destination   String
  loc_destination    String
  desc_destination   String
- open_hours         DateTime
- close_hours        DateTime
+ open_hours         String
+ close_hours        String
  favorit            Favorite[]
 }
 
