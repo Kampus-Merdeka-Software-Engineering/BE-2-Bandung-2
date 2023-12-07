@@ -9,8 +9,8 @@ module.exports = {
 
           let newContactUs = await prisma.Contact.create({
               data: {
-                email,
                 fullname,
+                email,
                 message
               },
           });
