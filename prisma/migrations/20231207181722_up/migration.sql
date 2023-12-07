@@ -13,7 +13,7 @@ CREATE TABLE `Destination` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `title` VARCHAR(191) NOT NULL,
     `location` VARCHAR(191) NOT NULL,
-    `description` VARCHAR(191) NOT NULL,
+    `description` TEXT NOT NULL,
     `time` VARCHAR(191) NOT NULL,
     `image` VARCHAR(191) NOT NULL,
 
